@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <div class="container">
+    <h2 class="center-align">All Reddit Posts</h2>
+    <table class="bordered">
+      <thead>
+        <tr>
+            <th data-field="author">Author</th>
+            <th data-field="title">Title</th>
+            <th data-field="create">Create Date</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for post in post_list %}
+          {% if post.published %}
+            <tr>
+              <td>{{post.author}}</td>
+              <td>{{post.title}}</td>
+              <td>{{post.create_date}}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
