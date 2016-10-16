@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h1>{{post.title}}</h1>
+  <p><i>Written by {{post.author}} on {{post.create_date}}</i></p>
+  {{post.body|safe}}
+{% endblock %}
