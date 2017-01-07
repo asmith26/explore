@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 
 class Topic(models.Model):
@@ -16,6 +17,9 @@ class Post(models.Model):
     topic = models.ForeignKey(Topic)
     create_date = models.DateTimeField(auto_now_add=True)
     body = models.CharField(max_length=6000)
+    
+    def get_absolute_url(self):
+        return reverse('post-detail', kwargs={"pk": self.id})
 
     def __str__(self):
         return str(self.topic) + ' - ' + self.title
