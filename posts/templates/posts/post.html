@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-  <div class="row">
-    <div class="col s12">
-      <h1>{{post.title}}</h1>
-      <p><i>Written by {{post.author}} on {{post.create_date}}</i></p>
-      {{post.body|safe}}
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <h1>{{post.title}}</h1>
+        <p><i>Written by {{post.author}} on {{post.create_date}}</i></p>
+        {{post.body|safe}}
+      </div>
     </div>
   </div>
-</div>
 {% endblock %}
