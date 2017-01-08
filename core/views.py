@@ -1,9 +1,13 @@
 from django.views.generic import TemplateView
 
+from .mixins import PageMixin
 
-class HomeView(TemplateView):
+
+class HomeView(PageMixin, TemplateView):
     template_name = "home.html"
+    page = "home"
 
 
-class AboutView(TemplateView):
+class AboutView(PageMixin, TemplateView):
     template_name = "about.html"
+    page = "about"
