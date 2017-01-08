@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  <h4 class="center-align">Contact Me</h4>
+  <div class="row">
+    <form class="col s12 m4 offset-m4" id="contact-form">
+      <input type="email" id="email" placeholder="Your Email"></input>
+      <input type="text" id="name" placeholder="Name"></input>
+      <input type="text" id="subject" placeholder="Subject"></input>
+      <textarea class="materialize-textarea" type="text" id="message" placeholder="What do you want to say?!"></textarea>
+      <button class="btn waves-effect waves-light" type="button" onclick="sendEmail()" id="send-button">
+        Send
+      </button>
+    </form>
+  </div>
+
+  <script type="text/javascript">
+    var sendEmail = function () {
+      $('#send-button').prop('disabled', true);
+
+      var url = "{% url 'contact-send' %}";
+      var data = {
+        "email": $("#email").val(),
+        "name": $("#name").val(),
+        "subject": $("#subject").val(),
+        "message": $("#message").val(),
+      }
+      var json = JSON.stringify(data);
+
+      $.post(url, json).then(function (response) {
+        console.log('success', response);
+        $('#contact-form')[0].reset();
+        Materialize.toast(response.message, 3000);
+        $('#send-button').prop('disabled', false);
+      }, function (response) {
+        console.log('error', response);
+        Materialize.toast("There was a problem sending your contact", 3000);
+        $('#send-button').prop('disabled', false);
+      });
+    }
+  </script>
+{% endblock %}
